@@ -1,0 +1,23 @@
+@import '../../../assets/styles/variables/colors';
+
+.border-box {
+  width: 100%;
+  text-align: center;
+  line-height: 140px;
+  height: 140px;
+  display: block;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  position: relative;
+  strong {
+    font-size: 32px;
+    margin-right: 5px;
+  }
+  label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    line-height: 1;
+    color: lighten($main_color, 50);
+  }
+}

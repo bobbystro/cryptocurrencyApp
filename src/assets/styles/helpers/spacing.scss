@@ -1,0 +1,28 @@
+// PADDING
+
+.pd {
+  &-15 {
+    padding: 15px;
+  }
+}
+
+.mg {
+  &-bottom {
+    &-25 {
+      margin-bottom: 25px;
+    }
+  }
+  &-top {
+    &-10 {
+      margin-top: 10px;
+    }
+    &-25 {
+      margin-top: 25px;
+    }
+  }
+  &-right {
+    &-5 {
+      margin-right: 5px;
+    }
+  }
+}

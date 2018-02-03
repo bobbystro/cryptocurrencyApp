@@ -1,0 +1,105 @@
+<div class="main fadeIn">
+  <div class="main-head border-bottom">
+    <h2 class="text-uppercase">Cryptocurrency rate</h2>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="cryptocurrency-change">Choose cryptocurrency</label>
+          <select id="cryptocurrency-change" class="form-control" [(ngModel)]="cryptocurrencyType"
+                  (change)="getCurrencyType()">
+            <option value="BTC">BTC</option>
+            <option value="LTC">LTC</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="currency-change">Choose currency</label>
+          <select id="currency-change" class="form-control" [(ngModel)]="currencyType" (change)="getCurrencyType()">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mg-bottom-25">
+      <div class="col-sm-4">
+        <span class="border-box text-green">
+          <label>Open</label>
+          <strong class="text-green">{{cryptocurrenciesDetailsModel.bitCoinOpen}}</strong>{{currencyType}}
+        </span>
+      </div>
+      <div class="col-sm-4">
+        <span class="border-box text-red">
+          <label>Close</label>
+          <strong class="text-red">{{cryptocurrenciesDetailsModel.bitCoinClose}}</strong>{{currencyType}}
+        </span>
+      </div>
+      <div class="col-sm-4">
+        <span class="border-box">
+          <label>Volume</label>
+          <strong>{{cryptocurrenciesDetailsModel.bitCoinPriceVolume}}</strong>{{currencyType}}
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="change-view">Change view:</label>
+          <select id="change-view" class="form-control" [(ngModel)]="rateTableView" (change)="changeView()">
+            <option value="Current rate view">Current rate view</option>
+            <option value="Historical table view">Historical table view</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mg-top-25" [ngClass]="{'hide': showRateView === false}">
+      <div class="col-sm-4">
+        <p>Buy: {{cryptocurrenciesDetailsModel.bitCoinOpen}}</p>
+        <p>Sell: {{cryptocurrenciesDetailsModel.bitCoinClose}}</p>
+      </div>
+      <div class="col-sm-4">
+        <p>High: {{cryptocurrenciesDetailsModel.bitCoinHigh}}</p>
+        <p>Low: {{cryptocurrenciesDetailsModel.bitCoinLow}}</p>
+      </div>
+      <div class="col-sm-4">
+        <p>Price: {{cryptocurrenciesDetailsModel.bitCoinPriceVolume}}</p>
+        <p>Volume: {{cryptocurrenciesDetailsModel.bitCoinVolume}}</p>
+      </div>
+    </div>
+
+    <div class="mg-top-25" [ngClass]="{'hide': showTableView === false}">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th class="text-green">Open</th>
+          <th class="text-red">Close</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Price volume</th>
+          <th>Volume</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cryptocurrenciesItem of cryptocurrenciesTableModel">
+          <td>{{cryptocurrenciesItem.bitDate}}</td>
+          <td class="text-green">{{cryptocurrenciesItem.bitCoinOpen}}</td>
+          <td class="text-red">{{cryptocurrenciesItem.bitCoinClose}}</td>
+          <td>{{cryptocurrenciesItem.bitCoinHigh}}</td>
+          <td>{{cryptocurrenciesItem.bitCoinLow}}</td>
+          <td><strong>{{cryptocurrenciesItem.bitCoinPriceVolume}}</strong></td>
+          <td>{{cryptocurrenciesItem.bitCoinVolume}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,38 @@
+<div class="main-nav" [ngClass]="{'fixed': menuFixed, 'rolled': menuHidden}">
+  <div class="main-nav-container">
+    <div class="hamburger" [ngClass]="{'active': menuHidden}" (click)="hideMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="list-unstyled nav-list">
+      <li>
+        <a [routerLinkActive]="'active'" routerLink="/home" title="Home"
+           class="flex flex-between flex-center"><span>Home</span><em class="fa fa-home"></em></a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active'" routerLink="/rate" title="Rate"
+           class="flex flex-between flex-center">
+          <span>Rate</span><em class="fa fa-bitcoin"></em></a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active'" routerLink="/diagrams" title="Diagrams"
+           class="flex flex-between flex-center"><span>Diagrams</span><em
+          class="fa fa-bar-chart"></em></a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active'" routerLink="/crytpocurrencies-currency-compare"
+           title="Currency compare" class="flex flex-between flex-center"><span>Currency compare</span><em
+          class="fa fa-money"></em></a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active'" routerLink="/contact" title="Contact"
+           class="flex flex-between flex-center"><span>Contact</span><em class="fa fa-phone"></em></a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active'" routerLink="/about-us" title="About us"
+           class="flex flex-between flex-center"><span>About us</span><em class="fa fa-info"></em></a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="main fadeIn">
+  <div class="main-head border-bottom">
+    <h2 class="text-uppercase">Cryptocurrency statistics</h2>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="cryptocurrency-change">Choose cryptocurrency</label>
+          <select id="cryptocurrency-change" class="form-control" [(ngModel)]="cryptocurrencyType"
+                  (change)="getCurrencyType()">
+            <option value="BTC">BTC</option>
+            <option value="LTC">LTC</option>
+            <option value="ETH">ETH</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="currency-change">Choose currency</label>
+          <select id="currency-change" class="form-control" [(ngModel)]="currencyType" (change)="getCurrencyType()">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <app-cryptocurrencies-history *ngIf="this.chartData[0].data.length"
+                                      [options]="this.chartOptions"
+                                      [data]="this.chartData"
+                                      [labels]="this.chartLabels"></app-cryptocurrencies-history>
+      </div>
+      <div class="col-sm-12">
+        <app-cryptocurrencies-price *ngIf="this.chartDataPrice[0].data.length"
+                                    [options]="this.chartOptions"
+                                    [data]="this.chartDataPrice"
+                                    [labels]="this.chartLabels"></app-cryptocurrencies-price>
+      </div>
+    </div>
+  </div>
+</div>

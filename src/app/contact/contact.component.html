@@ -1,0 +1,47 @@
+<div class="main fadeIn">
+  <div class="main-head border-bottom">
+    <h2 class="text-uppercase">Contact</h2>
+  </div>
+  <div class="content">
+    <form [formGroup]="messageForm">
+      <div class="row">
+        <div class="col-sm-6 mg-top-10">
+          <div class="form-box">
+            <input id="nameContact" type="text" placeholder=" " formControlName="contactName"
+                   [(ngModel)]="contactForm.contactName" required="required"/>
+            <label for="nameContact">Name</label>
+            <div *ngIf="contactNameForm.invalid && (contactNameForm.dirty || contactNameForm.touched)" class="error-msg">
+              <div *ngIf="contactNameForm.errors['required']">Name is required</div>
+              <div *ngIf="contactNameForm.errors['minlength']">Name must contain more than 1 letter</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mg-top-10">
+          <div class="form-box">
+            <input id="emailContact" type="email" placeholder=" " formControlName="contactEmail"
+                   [(ngModel)]="contactForm.contactEmail">
+            <label for="emailContact">Email</label>
+            <div *ngIf="contactEmail.invalid && (contactEmail.dirty || contactEmail.touched)" class="error-msg">
+              <div *ngIf="contactEmail.errors['required']">Email is required</div>
+              <div *ngIf="contactEmail.errors['email']">Wrong email</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 mg-top-25">
+          <div class="form-box">
+            <textarea id="messageContact" placeholder=" "
+                    formControlName="contactMessage" rows="4" [(ngModel)]="contactForm.contactMessage"></textarea>
+            <label for="messageContact">Message</label>
+            <div *ngIf="contactMessage.invalid && (contactMessage.dirty || contactMessage.touched)"
+                 class="error-msg">
+              <div *ngIf="contactMessage.errors['required']">Message is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right mg-top-25">
+        <button [disabled]="messageForm.invalid" type="submit" class="btn-blue">Send message</button>
+      </div>
+    </form>
+  </div>
+</div>

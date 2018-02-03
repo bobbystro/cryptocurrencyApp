@@ -1,0 +1,11 @@
+.text-white {
+  color: #fff;
+}
+
+.text-green {
+  color: darken($green_light, 6);
+}
+
+.text-red {
+  color: darken($red, 6);
+}
