@@ -17,6 +17,7 @@ import {ChartsModule} from 'ng2-charts';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CryptocurrenciesPriceComponent} from './cryptocurrencies-details/cryptocurrencies-charts/cryptocurrencies-price/cryptocurrencies-price.component';
 import {CryptocurrenciesChartsComponent} from './cryptocurrencies-details/cryptocurrencies-charts/cryptocurrencies-charts.component';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {CryptocurrenciesChartsComponent} from './cryptocurrencies-details/crypto
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CryptocurrenciesDetailsService, CrytpocurrenciesCurrencyCompareService],
+  providers: [CryptocurrenciesDetailsService, CrytpocurrenciesCurrencyCompareService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
