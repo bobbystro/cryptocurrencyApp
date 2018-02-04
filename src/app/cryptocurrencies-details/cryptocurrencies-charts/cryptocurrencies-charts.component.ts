@@ -56,6 +56,10 @@ export class CryptocurrenciesChartsComponent implements OnInit {
             this.chartLabels.unshift(cryptocurrenciesTableItem.bitDate);
           }
         });
+        this.chartData[0].data = this.chartData[0].data.slice(this.chartData[0].data.length - 50, this.chartData[0].data.length);
+        this.chartData[1].data = this.chartData[1].data.slice(this.chartData[1].data.length - 50, this.chartData[1].data.length);
+        this.chartDataPrice[0].data = this.chartDataPrice[0].data.slice(this.chartDataPrice[0].data.length - 50, this.chartDataPrice[0].data.length);
+        this.chartLabels = this.chartLabels.slice(this.chartLabels.length - 50, this.chartLabels.length);
         this.actualOpenRate = this.chartData[0].data[this.chartData[0].data.length - 1];
         this.actualCloseRate = this.chartData[1].data[this.chartData[1].data.length - 1];
         this.actualPriceRate = this.chartDataPrice[0].data[this.chartDataPrice[0].data.length - 1];
