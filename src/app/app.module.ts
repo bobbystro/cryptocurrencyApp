@@ -17,7 +17,6 @@ import {ChartsModule} from 'ng2-charts';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CryptocurrenciesPriceComponent} from './cryptocurrencies-details/cryptocurrencies-charts/cryptocurrencies-price/cryptocurrencies-price.component';
 import {CryptocurrenciesChartsComponent} from './cryptocurrencies-details/cryptocurrencies-charts/cryptocurrencies-charts.component';
-import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,7 @@ import {APP_BASE_HREF} from '@angular/common';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CryptocurrenciesDetailsService, CrytpocurrenciesCurrencyCompareService, { provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [CryptocurrenciesDetailsService, CrytpocurrenciesCurrencyCompareService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -21,9 +21,9 @@
             <input id="emailContact" type="email" placeholder=" " formControlName="contactEmail"
                    [(ngModel)]="contactForm.contactEmail">
             <label for="emailContact">Email</label>
-            <div *ngIf="contactEmail.invalid && (contactEmail.dirty || contactEmail.touched)" class="error-msg">
-              <div *ngIf="contactEmail.errors['required']">Email is required</div>
-              <div *ngIf="contactEmail.errors['email']">Wrong email</div>
+            <div *ngIf="contactEmailForm.invalid && (contactEmailForm.dirty || contactEmailForm.touched)" class="error-msg">
+              <div *ngIf="contactEmailForm.errors['required']">Email is required</div>
+              <div *ngIf="contactEmailForm.errors['email']">Wrong email</div>
             </div>
           </div>
         </div>
@@ -32,15 +32,16 @@
             <textarea id="messageContact" placeholder=" "
                     formControlName="contactMessage" rows="4" [(ngModel)]="contactForm.contactMessage"></textarea>
             <label for="messageContact">Message</label>
-            <div *ngIf="contactMessage.invalid && (contactMessage.dirty || contactMessage.touched)"
+            <div *ngIf="contactMessageForm.invalid && (contactMessageForm.dirty || contactMessageForm.touched)"
                  class="error-msg">
-              <div *ngIf="contactMessage.errors['required']">Message is required</div>
+              <div *ngIf="contactMessageForm.errors['required']">Message is required</div>
             </div>
           </div>
         </div>
       </div>
       <div class="text-right mg-top-25">
-        <button [disabled]="messageForm.invalid" type="submit" class="btn-blue">Send message</button>
+        <button [disabled]="messageForm.invalid" type="submit" class="btn-blue" (click)="showSuccessMessage()">Send message</button>
+        <p class="text-right text-success mg-top-10" *ngIf="successMessage">Successful send message</p>
       </div>
     </form>
   </div>

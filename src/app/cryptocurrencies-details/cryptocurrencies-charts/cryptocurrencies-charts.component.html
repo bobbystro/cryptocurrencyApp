@@ -25,14 +25,33 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
+    <div class="row mg-bottom-25">
+      <div class="col-sm-3 flex flex-column">
+        <div class="border-box mg-top-40">
+          <label>Latest open update</label>
+         <strong class="text-green">{{actualOpenRate}}</strong>
+        </div>
+        <div class="border-box mg-top-40">
+          <label>Latest open update</label>
+          <strong class="text-red">{{actualCloseRate}}</strong>
+        </div>
+      </div>
+      <div class="col-sm-9">
         <app-cryptocurrencies-history *ngIf="this.chartData[0].data.length"
                                       [options]="this.chartOptions"
                                       [data]="this.chartData"
                                       [labels]="this.chartLabels"></app-cryptocurrencies-history>
       </div>
-      <div class="col-sm-12">
+    </div>
+    <hr/>
+    <div class="row mg-bottom-25">
+      <div class="col-sm-3 flex flex-column">
+        <div class="border-box mg-top-40">
+          <label>Latest open update</label>
+          <strong>{{actualPriceRate}}</strong>
+        </div>
+      </div>
+      <div class="col-sm-9">
         <app-cryptocurrencies-price *ngIf="this.chartDataPrice[0].data.length"
                                     [options]="this.chartOptions"
                                     [data]="this.chartDataPrice"

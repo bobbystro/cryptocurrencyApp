@@ -28,20 +28,20 @@
     <div class="row mg-bottom-25">
       <div class="col-sm-4">
         <span class="border-box text-green">
-          <label>Open</label>
-          <strong class="text-green">{{cryptocurrenciesDetailsModel.bitCoinOpen}}</strong>{{currencyType}}
+          <label>Latest open update</label>
+          <strong class="text-green" *ngIf="cryptocurrenciesTableModel[0]">{{cryptocurrenciesTableModel[0].bitCoinOpen}}</strong>{{currencyType}}
         </span>
       </div>
       <div class="col-sm-4">
         <span class="border-box text-red">
-          <label>Close</label>
-          <strong class="text-red">{{cryptocurrenciesDetailsModel.bitCoinClose}}</strong>{{currencyType}}
+          <label>Latest close update</label>
+          <strong class="text-red" *ngIf="cryptocurrenciesTableModel[0]">{{cryptocurrenciesTableModel[0].bitCoinClose}}</strong>{{currencyType}}
         </span>
       </div>
       <div class="col-sm-4">
         <span class="border-box">
-          <label>Volume</label>
-          <strong>{{cryptocurrenciesDetailsModel.bitCoinPriceVolume}}</strong>{{currencyType}}
+          <label>Latest price update</label>
+          <strong *ngIf="cryptocurrenciesTableModel[0]">{{cryptocurrenciesTableModel[0].bitCoinPriceVolume}}</strong>{{currencyType}}
         </span>
       </div>
     </div>
@@ -58,18 +58,18 @@
       </div>
     </div>
 
-    <div class="row mg-top-25" [ngClass]="{'hide': showRateView === false}">
+    <div class="row mg-top-25" [ngClass]="{'hide': showRateView === false}" *ngIf="cryptocurrenciesTableModel[0]">
       <div class="col-sm-4">
-        <p>Buy: {{cryptocurrenciesDetailsModel.bitCoinOpen}}</p>
-        <p>Sell: {{cryptocurrenciesDetailsModel.bitCoinClose}}</p>
+        <p>Buy: {{cryptocurrenciesTableModel[0].bitCoinOpen}}</p>
+        <p>Sell: {{cryptocurrenciesTableModel[0].bitCoinClose}}</p>
       </div>
       <div class="col-sm-4">
-        <p>High: {{cryptocurrenciesDetailsModel.bitCoinHigh}}</p>
-        <p>Low: {{cryptocurrenciesDetailsModel.bitCoinLow}}</p>
+        <p>High: {{cryptocurrenciesTableModel[0].bitCoinHigh}}</p>
+        <p>Low: {{cryptocurrenciesTableModel[0].bitCoinLow}}</p>
       </div>
       <div class="col-sm-4">
-        <p>Price: {{cryptocurrenciesDetailsModel.bitCoinPriceVolume}}</p>
-        <p>Volume: {{cryptocurrenciesDetailsModel.bitCoinVolume}}</p>
+        <p>Price: {{cryptocurrenciesTableModel[0].bitCoinPriceVolume}}</p>
+        <p>Volume: {{cryptocurrenciesTableModel[0].bitCoinVolume}}</p>
       </div>
     </div>
 

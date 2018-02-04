@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
   contactForm: ContactModel;
+  successMessage = false;
 
   constructor() {
   }
@@ -28,13 +29,15 @@ export class ContactComponent implements OnInit {
     return this.messageForm.get('contactName');
   }
 
-  // TODO: change to use 'Form' within property like above
-  get contactEmail() {
+  get contactEmailForm() {
     return this.messageForm.get('contactEmail');
   }
 
-  get contactMessage() {
+  get contactMessageForm() {
     return this.messageForm.get('contactMessage');
   }
 
+  showSuccessMessage() {
+    this.successMessage = true;
+  }
 }

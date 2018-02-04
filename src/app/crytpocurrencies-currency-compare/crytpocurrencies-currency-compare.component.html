@@ -41,8 +41,8 @@
       <tbody>
       <tr *ngFor="let cryptocurrenciesCompareItem of cryptocurrenciesCompare; let i = index">
         <th>{{i + 1}}</th>
-        <th>{{cryptocurrenciesCompareItem.marketName}}</th>
-        <th>{{cryptocurrenciesCompareItem.marketPrice}}</th>
+        <th>{{cryptocurrenciesCompareItem.marketLabel}}</th>
+        <th>{{cryptocurrenciesCompareItem.marketPrice + ' ' + cryptocurrenciesCompareItem.marketName}}</th>
         <th>{{cryptocurrenciesCompareItem.marketVolume}}</th>
       </tr>
       </tbody>

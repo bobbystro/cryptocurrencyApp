@@ -1,18 +1,4 @@
-@import '../../assets/styles/variables/colors';
-
 .border-box {
-  width: 100%;
-  text-align: center;
   line-height: 140px;
   height: 140px;
-  display: block;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  &:hover {
-    background-color: rgba($gray_ef, 0.3);
-  }
-  strong {
-    font-size: 32px;
-    margin-right: 5px;
-  }
 }

@@ -7,8 +7,48 @@
   }
 }
 
+@keyframes rightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  15% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes leftIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  15% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .fadeIn {
   animation-name: fadeIn;
   animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.left-in {
+  animation-name: leftIn;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+.right-in {
+  animation-name: rightIn;
+  animation-duration: 1.2s;
   animation-fill-mode: forwards;
 }

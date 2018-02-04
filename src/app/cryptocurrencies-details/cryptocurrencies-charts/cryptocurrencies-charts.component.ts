@@ -12,6 +12,9 @@ export class CryptocurrenciesChartsComponent implements OnInit {
   cryptocurrenciesDetailsModel: CryptocurrenciesDetailsModel;
   cryptocurrencyType = 'BTC';
   currencyType = 'USD';
+  actualOpenRate = 0;
+  actualCloseRate = 0;
+  actualPriceRate = 0;
 
   chartOptions = {
     responsive: true
@@ -32,18 +35,7 @@ export class CryptocurrenciesChartsComponent implements OnInit {
     this.cryptocurrenciesDetailsModel = new CryptocurrenciesDetailsModel();
   }
 
-  // TODO: move to service
-  timeConverter(unix): string {
-    const date = new Date(unix);
-    const hours = date.getHours();
-    const minutes = '0' + date.getMinutes();
-    const seconds = '0' + date.getSeconds();
-
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    return date.toLocaleDateString() + ' ' + formattedTime;
-  }
-
-  getCryptocurrenciesApi() {
+  getCryptocurrenciesChartApi() {
     this.cryptocurrenciesDetailsService.getCryptocurrenciesDetails(this.cryptocurrencyType, this.currencyType).subscribe(
       data => {
         const jsonData = data.json();
@@ -56,7 +48,7 @@ export class CryptocurrenciesChartsComponent implements OnInit {
             item['low'],
             item['priceVolume'],
             item['volume'],
-            this.timeConverter(item['timestamp']));
+            CryptocurrenciesDetailsService.timeConverter(item['timestamp']));
           if (!isNullOrUndefined(cryptocurrenciesTableItem) && Number(cryptocurrenciesTableItem.bitCoinOpen)) {
             this.chartData[0].data.unshift(Number(cryptocurrenciesTableItem.bitCoinOpen));
             this.chartData[1].data.unshift(Number(cryptocurrenciesTableItem.bitCoinClose));
@@ -64,7 +56,9 @@ export class CryptocurrenciesChartsComponent implements OnInit {
             this.chartLabels.unshift(cryptocurrenciesTableItem.bitDate);
           }
         });
-
+        this.actualOpenRate = this.chartData[0].data[this.chartData[0].data.length - 1];
+        this.actualCloseRate = this.chartData[1].data[this.chartData[1].data.length - 1];
+        this.actualPriceRate = this.chartDataPrice[0].data[this.chartDataPrice[0].data.length - 1];
       }, error => {
         console.log(error);
       }
@@ -72,12 +66,12 @@ export class CryptocurrenciesChartsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCryptocurrenciesApi();
+    this.getCryptocurrenciesChartApi();
   }
 
   getCurrencyType() {
     this.clearChartData();
-    this.getCryptocurrenciesApi();
+    this.getCryptocurrenciesChartApi();
   }
 
   clearChartData() {

@@ -9,7 +9,6 @@ import {isNullOrUndefined} from 'util';
   styleUrls: ['./cryptocurrencies-rate.component.scss']
 })
 export class CryptocurrenciesRateComponent implements OnInit {
-  cryptocurrenciesDetailsModel: CryptocurrenciesDetailsModel;
   cryptocurrenciesTableModel: CryptocurrenciesDetailsModel[];
   cryptocurrencyType = 'BTC';
   currencyType = 'USD';
@@ -18,86 +17,38 @@ export class CryptocurrenciesRateComponent implements OnInit {
   showTableView = false;
 
   constructor(private cryptocurrenciesDetailsService: CryptocurrenciesDetailsService) {
-    this.cryptocurrenciesDetailsModel = new CryptocurrenciesDetailsModel();
   }
 
-  timeConverter(unix): string {
-    const date = new Date(unix);
-    const hours = date.getHours();
-    const minutes = '0' + date.getMinutes();
-    const seconds = '0' + date.getSeconds();
-
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    return date.toLocaleDateString() + ' ' + formattedTime;
+  getCryptocurrenciesRateApi() {
+    this.cryptocurrenciesTableModel = [];
+    this.cryptocurrenciesDetailsService.getCryptocurrenciesDetails(this.cryptocurrencyType, this.currencyType).subscribe(
+      data => {
+        const jsonData = data.json();
+        jsonData.forEach(item => {
+          const cryptocurrenciesTableItem = new CryptocurrenciesDetailsModel(
+            item['open'],
+            item['close'],
+            item['high'],
+            item['low'],
+            item['priceVolume'],
+            item['volume'],
+            CryptocurrenciesDetailsService.timeConverter(item['timestamp']));
+          if (!isNullOrUndefined(cryptocurrenciesTableItem) && Number(cryptocurrenciesTableItem.bitCoinOpen)) {
+            this.cryptocurrenciesTableModel.push(cryptocurrenciesTableItem);
+          }
+        });
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit() {
-    this.cryptocurrenciesTableModel = [];
-    this.cryptocurrenciesDetailsService.getCryptocurrenciesDetails(this.cryptocurrencyType, this.currencyType).subscribe(
-      data => {
-        const jsonData = data.json();
-        this.cryptocurrenciesDetailsModel = new CryptocurrenciesDetailsModel(
-          jsonData[0]['open'],
-          jsonData[0]['close'],
-          jsonData[0]['high'],
-          jsonData[0]['low'],
-          jsonData[0]['priceVolume'],
-          jsonData[0]['volume'],
-        );
-        jsonData.forEach(item => {
-          const cryptocurrenciesTableItem = new CryptocurrenciesDetailsModel(
-            item['open'],
-            item['close'],
-            item['high'],
-            item['low'],
-            item['priceVolume'],
-            item['volume'],
-            this.timeConverter(item['timestamp']));
-          if (!isNullOrUndefined(cryptocurrenciesTableItem) && Number(cryptocurrenciesTableItem.bitCoinOpen)) {
-            this.cryptocurrenciesTableModel.push(cryptocurrenciesTableItem);
-          }
-        });
-
-
-      }, error => {
-        console.log(error);
-      }
-    );
-
+    this.getCryptocurrenciesRateApi();
   }
 
   getCurrencyType() {
-    this.cryptocurrenciesTableModel = [];
-    this.cryptocurrenciesDetailsService.getCryptocurrenciesDetails(this.cryptocurrencyType, this.currencyType).subscribe(
-      data => {
-        const jsonData = data.json();
-        this.cryptocurrenciesDetailsModel = new CryptocurrenciesDetailsModel(
-          jsonData[0]['open'],
-          jsonData[0]['close'],
-          jsonData[0]['high'],
-          jsonData[0]['low'],
-          jsonData[0]['priceVolume'],
-          jsonData[0]['volume'],
-        );
-        jsonData.forEach(item => {
-          const cryptocurrenciesTableItem = new CryptocurrenciesDetailsModel(
-            item['open'],
-            item['close'],
-            item['high'],
-            item['low'],
-            item['priceVolume'],
-            item['volume'],
-            this.timeConverter(item['timestamp']));
-          if (!isNullOrUndefined(cryptocurrenciesTableItem) && Number(cryptocurrenciesTableItem.bitCoinOpen)) {
-            this.cryptocurrenciesTableModel.push(cryptocurrenciesTableItem);
-          }
-        });
-
-
-      }, error => {
-        console.log(error);
-      }
-    );
+    this.getCryptocurrenciesRateApi();
   }
 
   changeView() {
